@@ -15,8 +15,11 @@ namespace DomainLayer.Models
         public string SeriesDescription { get; set; }
         public string ProductUrl { get; set; }
         public string ImageUrl { get; set; }
+
+        [JsonIgnore]
         public ProductCategory ProductCategory { get; set; }
 
+        [JsonIgnore]
         public ICollection<ProductModel> ProductModels { get; set; }
     }
 }

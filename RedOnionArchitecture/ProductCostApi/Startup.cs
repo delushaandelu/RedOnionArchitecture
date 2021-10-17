@@ -9,7 +9,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RepositoryLayer;
 using RepositoryLayer.Repositroy.ProductCategory;
+using RepositoryLayer.Repositroy.ProductSeries;
 using ServicesLayer.ProductcategoryService;
+using ServicesLayer.ProductseriesService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +41,10 @@ namespace ProductCostApi
             services.AddDbContext<ApplicationDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DevelopmentConnection")));
 
             services.AddScoped(typeof(IProductcategoryRepository<>), typeof(ProductcategoryRepository<>));
+            services.AddScoped(typeof(IProductseriesRepository<>), typeof(ProductseriesRepository<>));
+
             services.AddTransient<IProductcategoryService, ProductcategoryService>();
+            services.AddTransient<IProductseriesService, ProductseriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

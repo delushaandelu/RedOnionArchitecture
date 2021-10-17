@@ -16,6 +16,7 @@ namespace DomainLayer.Models
         public string ImageUrl { get; set; }
         public string Cost { get; set; }
 
+        [JsonIgnore]
         public ProductModel ProductModel { get; set; }
     }
 }
