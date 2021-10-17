@@ -30,7 +30,7 @@ namespace ProductCostApi.Controllers
             }
             else
             {
-                return BadRequest("No Record found");
+                return BadRequest(new { message = "bad request" });
             }
         }
 
@@ -44,7 +44,7 @@ namespace ProductCostApi.Controllers
             }
             else
             {
-                return BadRequest("No Record found");
+                return BadRequest(new { message = "bad request" });
             }
         }
 
@@ -52,21 +52,21 @@ namespace ProductCostApi.Controllers
         public IActionResult CreateNewProductCategory(ProductCategory productCategory)
         {
             _productcategoryService.CreateNewProductCategory(productCategory);
-            return Ok("Data Created");
+            return Ok(new { message = "Data Created" });
         }
 
         [HttpPost(nameof(UpdateProductCategory))]
         public IActionResult UpdateProductCategory(ProductCategory productCategory)
         {
             _productcategoryService.UpdateProductCategory(productCategory);
-            return Ok("Data Updated");
+            return Ok(new { message = "Data Updated" });
         }
 
         [HttpPost(nameof(DeleteProductCategory))]
         public IActionResult DeleteProductCategory(int id)
         {
             _productcategoryService.DeleteProductCategory(id);
-            return Ok("Data Deleted");
+            return Ok(new { message = "Data Deleted" });
         }
     }
 }
