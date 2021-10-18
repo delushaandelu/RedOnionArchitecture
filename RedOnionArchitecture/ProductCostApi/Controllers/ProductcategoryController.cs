@@ -1,4 +1,5 @@
 ﻿using DomainLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServicesLayer.ProductcategoryService;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProductCostApi.Controllers
-{
+{    
     [Route("api/[controller]")]
     [ApiController]
     public class ProductcategoryController : ControllerBase
@@ -48,6 +49,7 @@ namespace ProductCostApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost(nameof(CreateNewProductCategory))]
         public IActionResult CreateNewProductCategory(ProductCategory productCategory)
         {
@@ -55,6 +57,7 @@ namespace ProductCostApi.Controllers
             return Ok(new { message = "Data Created" });
         }
 
+        [Authorize]
         [HttpPost(nameof(UpdateProductCategory))]
         public IActionResult UpdateProductCategory(ProductCategory productCategory)
         {
@@ -62,6 +65,7 @@ namespace ProductCostApi.Controllers
             return Ok(new { message = "Data Updated" });
         }
 
+        [Authorize]
         [HttpPost(nameof(DeleteProductCategory))]
         public IActionResult DeleteProductCategory(int id)
         {

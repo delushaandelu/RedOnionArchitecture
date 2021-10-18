@@ -1,4 +1,5 @@
 ﻿using DomainLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServicesLayer.ProductPart;
@@ -62,6 +63,7 @@ namespace ProductCostApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost(nameof(CreateNewProductPart))]
         public IActionResult CreateNewProductPart(ProductPart productPart)
         {
@@ -69,6 +71,7 @@ namespace ProductCostApi.Controllers
             return Ok(new { message = "Data Created" });
         }
 
+        [Authorize]
         [HttpPost(nameof(UpdateProductPart))]
         public IActionResult UpdateProductPart(ProductPart productPart)
         {
@@ -76,6 +79,7 @@ namespace ProductCostApi.Controllers
             return Ok(new { message = "Data Updated" });
         }
 
+        [Authorize]
         [HttpPost(nameof(DeleteProductPart))]
         public IActionResult DeleteProductPart(int id)
         {
