@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCostApi", "ProductCostApi.csproj", "{3B057449-5D3F-486A-8E25-CC713464AFA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCostApi", "ProductCostApi.csproj", "{3B057449-5D3F-486A-8E25-CC713464AFA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLayer", "..\DomainLayer\DomainLayer.csproj", "{EE4CDE9B-DD8C-46D9-B5DF-9BAECCA16140}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainLayer", "..\DomainLayer\DomainLayer.csproj", "{EE4CDE9B-DD8C-46D9-B5DF-9BAECCA16140}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryLayer", "..\RepositoryLayer\RepositoryLayer.csproj", "{DFFC36A6-C380-4FB2-AB5B-321A5C9AE350}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryLayer", "..\RepositoryLayer\RepositoryLayer.csproj", "{DFFC36A6-C380-4FB2-AB5B-321A5C9AE350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesLayer", "..\ServicesLayer\ServicesLayer.csproj", "{83DCF7BE-D9AB-4A98-A706-4A2E62EF26B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesLayer", "..\ServicesLayer\ServicesLayer.csproj", "{83DCF7BE-D9AB-4A98-A706-4A2E62EF26B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{58F3D14E-2D21-4956-80AE-6736ED756C73}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{CC3EC210-4792-4B96-81A0-44A04A9A0517}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{F3A11B31-5AFE-4398-A236-895728857A95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCost.Enumes", "..\ProductCost.Enumes\ProductCost.Enumes.csproj", "{C46F8F1B-0F6D-4371-8126-9EAA22EDA760}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{83DCF7BE-D9AB-4A98-A706-4A2E62EF26B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83DCF7BE-D9AB-4A98-A706-4A2E62EF26B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83DCF7BE-D9AB-4A98-A706-4A2E62EF26B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C46F8F1B-0F6D-4371-8126-9EAA22EDA760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C46F8F1B-0F6D-4371-8126-9EAA22EDA760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C46F8F1B-0F6D-4371-8126-9EAA22EDA760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C46F8F1B-0F6D-4371-8126-9EAA22EDA760}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{EE4CDE9B-DD8C-46D9-B5DF-9BAECCA16140} = {9720F12F-D6BF-45EA-9F1E-019B3EB49724}
 		{DFFC36A6-C380-4FB2-AB5B-321A5C9AE350} = {CC3EC210-4792-4B96-81A0-44A04A9A0517}
 		{83DCF7BE-D9AB-4A98-A706-4A2E62EF26B0} = {F3A11B31-5AFE-4398-A236-895728857A95}
+		{C46F8F1B-0F6D-4371-8126-9EAA22EDA760} = {9720F12F-D6BF-45EA-9F1E-019B3EB49724}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC364ED6-DB63-4352-B03F-D8896A0B7093}

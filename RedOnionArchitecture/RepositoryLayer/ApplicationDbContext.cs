@@ -25,6 +25,14 @@ namespace RepositoryLayer
             modelBuilder.ApplyConfiguration(new UserRoleMap());
             modelBuilder.ApplyConfiguration(new UserMap());
             base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<ProductCategory>().HasData(
+            //    new ProductCategory 
+            //    { 
+                    
+            //    });
         }
+
+        
     }
 }
