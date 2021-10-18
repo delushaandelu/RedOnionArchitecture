@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DomainLayer\SEAO.SpareParts.DomainLayer.csproj" />
+    <ProjectReference Include="..\RepositoryLayer\SEAO.SpareParts.RepositoryLayer.csproj" />
+  </ItemGroup>
+
+</Project>
