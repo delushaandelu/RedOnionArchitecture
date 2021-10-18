@@ -1,5 +1,6 @@
 ﻿using DomainLayer.IdentityAuth;
 using DomainLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -191,5 +192,99 @@ namespace ProductCostApi.Controllers
             return Ok(new Response { Status = "Success", Message = "Password successfully changed." });
             
         }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [Route("reset-password-admin")]
+        public async Task<IActionResult> ResetPasswordAdmin([FromBody] ResetPasswordAdminModel model)
+        {
+            var user = await _userManager.FindByNameAsync(model.Username);
+            if (user == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exists" });
+            }
+            else
+            {
+                if (string.Compare(model.NewPassword, model.ConfirmNewPassword) != 0)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "The new password and confirm password does not match" });
+                }
+
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                var result = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+
+                if(!result.Succeeded)
+                {
+                    var errors = new List<string>();
+
+                    foreach (var error in result.Errors)
+                    {
+                        errors.Add(error.Description);
+                    }
+
+                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = string.Join(", ", errors) });
+                }
+                return Ok(new Response { Status = "Success", Message = "Password successfully reseted." });
+            }
+
+        }
+
+        //Reset password for user
+        [HttpPost]
+        [Route("reset-password-token")]
+        public async Task<IActionResult> ResetPasswordToken([FromBody] ResetPasswordTokenModel model)
+        {
+            var user = await _userManager.FindByNameAsync(model.Username);
+            if (user == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exists!" });               
+            }
+            else
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                
+                return Ok(new { token = token });
+            }
+        }
+
+        [HttpPost]
+        [Route("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)
+        {
+            var user = await _userManager.FindByNameAsync(model.Username);
+            if (user == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exists" });
+            }
+            else
+            {
+                if (string.Compare(model.NewPassword, model.ConfirmNewPassword) != 0)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "The new password and confirm password does not match" });
+                }
+
+                if(string.IsNullOrEmpty(model.Token))
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "Invalid token!" });
+                }
+
+                var result = await _userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
+
+                if (!result.Succeeded)
+                {
+                    var errors = new List<string>();
+
+                    foreach (var error in result.Errors)
+                    {
+                        errors.Add(error.Description);
+                    }
+
+                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = string.Join(", ", errors) });
+                }
+                return Ok(new Response { Status = "Success", Message = "Password successfully reseted." });
+            }
+        }
+
     }
 }

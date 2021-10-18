@@ -109,6 +109,11 @@ namespace ProductCostApi
                     };
                 });
 
+            services.Configure<DataProtectionTokenProviderOptions>(options =>
+            {
+                options.TokenLifespan = TimeSpan.FromHours(4);
+            });
+
             services.AddScoped(typeof(IProductcategoryRepository<>), typeof(ProductcategoryRepository<>));
             services.AddScoped(typeof(IProductseriesRepository<>), typeof(ProductseriesRepository<>));
             services.AddScoped(typeof(IProductmodelRepository<>), typeof(ProductmodelRepository<>));
