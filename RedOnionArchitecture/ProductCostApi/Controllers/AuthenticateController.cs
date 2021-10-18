@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using SEAO.SpareParts.DomainLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -52,7 +53,14 @@ namespace ProductCostApi.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (!result.Succeeded)
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = result.ToString() });
+                    var errors = new List<string>();
+
+                    foreach (var error in result.Errors)
+                    {
+                        errors.Add(error.Description);
+                    }
+
+                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = string.Join(",", errors) });
                 }
                 else
                 {
@@ -84,7 +92,14 @@ namespace ProductCostApi.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (!result.Succeeded)
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = result.ToString() });
+                    var errors = new List<string>();
+
+                    foreach (var error in result.Errors)
+                    {
+                        errors.Add(error.Description);
+                    }
+
+                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = string.Join(",",errors) });
                 }
 
                 if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
@@ -141,6 +156,40 @@ namespace ProductCostApi.Controllers
             }
 
             return Unauthorized();
+        }
+
+        [HttpPost]
+        [Route("change-password")]
+        public async Task<IActionResult> Changepassword([FromBody] ChangePasswordModel model)
+        {
+            var user = await _userManager.FindByNameAsync(model.Username);
+            if(user == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new Response { Status = "Error", Message = "User does not exists" });
+            }
+            else
+            {
+                if (string.Compare(model.NewPassword, model.ConfirmNewPassword)!=0)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new Response { Status = "Error", Message = "The new password and confirm password does not match" });
+                }
+
+                var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if(!result.Succeeded)
+                {
+                    var errors = new List<string>();
+
+                    foreach(var error in result.Errors)
+                    {
+                        errors.Add(error.Description);
+                    }
+
+                    return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = string.Join(", ", errors) });
+                }
+            }
+
+            return Ok(new Response { Status = "Success", Message = "Password successfully changed." });
+            
         }
     }
 }
