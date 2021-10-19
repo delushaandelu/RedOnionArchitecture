@@ -7,9 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 
 namespace ProductCostApi.Controllers
 {
+    [EnableCorsAttribute("*", "*", "*")]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductseriesController : ControllerBase

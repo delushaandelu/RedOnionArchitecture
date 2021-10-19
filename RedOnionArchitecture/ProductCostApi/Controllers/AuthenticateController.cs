@@ -14,9 +14,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 
 namespace ProductCostApi.Controllers
 {
+    [EnableCorsAttribute("*", "*", "*")]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticateController : ControllerBase
