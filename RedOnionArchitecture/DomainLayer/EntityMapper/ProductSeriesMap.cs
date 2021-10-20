@@ -15,37 +15,37 @@ namespace DomainLayer.EntityMapper
         {
             builder.HasKey(x => x.Id).HasName("pk_ProductSeriesId");
 
-            builder.Property(x => x.Id).ValueGeneratedNever()
+            builder.Property(x => x.Id).ValueGeneratedOnAdd()
                 .HasColumnName("Id")
                 .HasColumnType("Int")
                 .HasDefaultValueSql("NULL"); 
-            builder.Property(x => x.SeriesName).ValueGeneratedOnAdd()
+            builder.Property(x => x.SeriesName)
                 .HasColumnName("SeriesName")
                 .HasColumnType("NVARCHAR(100)")
                 .IsRequired();
-            builder.Property(x => x.SeriesDescription).ValueGeneratedOnAdd()
+            builder.Property(x => x.SeriesDescription)
                 .HasColumnName("SeriesDescription")
                 .HasColumnType("NVARCHAR(100)")
                 .IsRequired();
-            builder.Property(x => x.ProductUrl).ValueGeneratedOnAdd()
+            builder.Property(x => x.ProductUrl)
                 .HasColumnName("ProductUrl")
                 .HasColumnType("NVARCHAR(100)");
-            builder.Property(x => x.ImageUrl).ValueGeneratedOnAdd()
+            builder.Property(x => x.ImageUrl)
                 .HasColumnName("ImageUrl")
                 .HasColumnType("NVARCHAR(100)");
-            builder.Property(x => x.CratedBy).ValueGeneratedOnAdd()
+            builder.Property(x => x.CratedBy)
                 .HasColumnName("CratedBy")
                 .HasColumnType("NVARCHAR(100)");
-            builder.Property(x => x.CreatedDateTime).ValueGeneratedOnAdd()
+            builder.Property(x => x.CreatedDateTime)
                .HasColumnName("CreatedDateTime")
                .HasColumnType("datetime");
-            builder.Property(x => x.UpdatedBy).ValueGeneratedOnAdd()
+            builder.Property(x => x.UpdatedBy)
                 .HasColumnName("UpdatedBy")
                 .HasColumnType("NVARCHAR(100)");
-            builder.Property(x => x.UpdatedDateTime).ValueGeneratedOnAdd()
+            builder.Property(x => x.UpdatedDateTime)
                .HasColumnName("UpdatedDateTime")
                .HasColumnType("datetime");
-            builder.Property(x => x.IsActive).ValueGeneratedOnAdd()
+            builder.Property(x => x.IsActive)
                .HasColumnName("IsActive")
                .HasColumnType("bit");
 
